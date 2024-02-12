@@ -1,5 +1,5 @@
 <template>
-    <button>
+    <button v-on:click="click_on_category">
     <div class="meal_category">
         <img :src=picture>
         <div class="meal_title"><h2>{{ category_name }}</h2></div>
@@ -11,14 +11,19 @@
 <script>
 export default {
     name: "meal_category",
-    data(){
-        return{
-            category_name: ""
-        }
-    },
+    // data(){
+    //     return{
+    //         category_name: ""
+    //     }
+    // },
     props: {
         picture: String,
         category_name: String
+    },
+    methods: {
+        click_on_category(){
+            this.$emit('click_on_category', this.category_name)
+        }
     }
 }
 </script>

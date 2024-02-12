@@ -22,6 +22,9 @@ export default
         created: async function(){
             this.meals = await fetchByCategory("Vegetarian")
         },
+        // updated: async function(){
+        //     this.meals = await fetchByCategory(this.category)
+        // },
         methods:
         {
             // async getRandomMeal() {
@@ -31,6 +34,9 @@ export default
                 let meal_string = JSON.stringify(meal).toLowerCase()
                 if (meal_string.toLowerCase().includes(word)) return true
                 return false
+            },
+            async change_category(category){
+                this.meals = await fetchByCategory(category)
             }
         },
         props: {
