@@ -1,0 +1,2 @@
+recherche par texte 
+filtrer par type
