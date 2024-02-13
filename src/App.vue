@@ -1,8 +1,10 @@
 <template>
   <div>
     <all_meal_category v-on:category_clicked="show_meal_by_category" :is_visible="are_categories_visible"/>
-    <all_global_meal_card v-on:show_meal_by_category="" :category="clicked_category" :is_visible="are_meals_visible"/> <!--Trouver comment appeler une fonction d'un enfant-->
-    <!-- <meal_recipe/> -->
+
+    <all_global_meal_card v-on:go_back="go_back" v-on:meal_clicked="show_recipe" ref="meals" :category="clicked_category" :is_visible="are_meals_visible"/>
+
+    <meal_recipe v-on:go_back="go_back" ref="recipe" :is_visible="is_recipe_visible"/>
   </div>
   
 </template>
@@ -21,6 +23,7 @@ export default {
     return{
       are_categories_visible : true,
       are_meals_visible : false,
+      is_recipe_visible : false,
       clicked_category : ""
     }
   },
@@ -29,6 +32,23 @@ export default {
         this.clicked_category = clicked_category
         this.are_categories_visible = false
         this.are_meals_visible = true
+        this.$refs.meals.change_category(clicked_category)
+    },
+    show_recipe(clicked_meal){
+      this.is_recipe_visible = true
+      this.are_meals_visible = false 
+      this.$refs.recipe.change_meal(clicked_meal)
+    },
+    go_back(origin){
+      if(origin == "meals"){
+        this.are_meals_visible = !this.are_meals_visible
+        this.are_categories_visible = !this.are_categories_visible
+      }
+      if(origin== "recipe"){
+        this.is_recipe_visible = !this.is_recipe_visible
+        this.are_meals_visible = !this.are_meals_visible
+      }
+      
     }
   }
   }

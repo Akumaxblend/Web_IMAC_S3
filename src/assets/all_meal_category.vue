@@ -27,7 +27,6 @@ export default {
             this.$emit('category_clicked', clicked_category)
             console.log(clicked_category)
         }
-
     },
     components: {
         meal_category

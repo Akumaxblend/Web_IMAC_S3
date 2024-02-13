@@ -1,5 +1,6 @@
 <template>
-    <div class="content">
+    <div class="content" v-show="is_visible">
+        <return_button v-on:go_back="go_back"/>
         <img :src="meal.strMealThumb"/>
         <h2 class="meal_title">{{ meal.strMeal }}</h2>
         <div>
@@ -12,6 +13,7 @@
 <script>
 import { fetchById, fetchIngredientNumber } from "@/services/api.js"
 import ingredient_card from "./ingredient_card.vue";
+import return_button from "@/return_button.vue";
 export default
     {
         name: "meal_recipe",
@@ -21,19 +23,28 @@ export default
                 ingredients: {}
             }
         },
-        created: async function(){
-            this.meal = await fetchById(52772);
-            this.meal = this.meal.meals[0];
-            this.ingredients = await fetchIngredientNumber(this.meal)
-        },
+        // created: async function(){
+        //     this.meal = await fetchById(52772);
+        //     this.meal = this.meal.meals[0];
+        //     this.ingredients = await fetchIngredientNumber(this.meal)
+        // },
         methods:{
+            async change_meal(meal_id){
+                this.meal = await fetchById(meal_id);
+                this.meal = this.meal.meals[0];
+                this.ingredients = await fetchIngredientNumber(this.meal)
+            },
+            go_back(){
+                this.$emit("go_back", "recipe")
+            }
         },
         props: {
             meal_name:"",
-            meal_img: ""
+            meal_img: "",
+            is_visible: true
         },
         components: {
-    ingredient_card,
+    ingredient_card, return_button
 }     
     }
 </script>

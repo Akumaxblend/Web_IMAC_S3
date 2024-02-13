@@ -1,8 +1,10 @@
 <template>
-    <div class="content" v-show="is_visible">
+    <button v-show="is_visible" v-on:click="meal_clicked">
+    <div class="content">
         <img :src="meal_img"/>
         <h2 class="meal_title">{{ meal_name }}</h2>
     </div>
+    </button>
 </template>
 
 <script>
@@ -19,16 +21,14 @@ export default
         // this.randomMeal = await fetchRandom().meals[0].strMeal
         // },
         methods:{
-            // async getRandomMeal() {
-            //     this.randomMeal = await fetchRandom().meals[0].strMealThumb
-            // }
-            // contains_word(word){
-
-            // }
+            meal_clicked(){
+                this.$emit("meal_clicked", this.meal_id)
+            }
         },
         props: {
             meal_name:"",
             meal_img: "",
+            meal_id: 0,
             is_visible: true
         }
         

@@ -3,12 +3,14 @@
         <div class="gallery-options">
         <input type="text" v-model="search" placeholder="Search meals">
         </div>
-        <global_meal_card v-for="meal in meals.meals" :is_visible="contains_word(meal, search)" :meal_img="meal.strMealThumb" :meal_name="meal.strMeal"/>
+        <return_button class="return_button" v-on:go_back="go_back"/>
+        <global_meal_card v-for="meal in meals.meals" v-on:meal_clicked="retrieve_meal" :is_visible="contains_word(meal, search)" :meal_img="meal.strMealThumb" :meal_name="meal.strMeal" :meal_id="meal.idMeal"/>
     </div>
 </template>
 
 <script>
 import { fetchByCategory } from "@/services/api.js"
+import return_button from "@/return_button.vue"
 import global_meal_card from "./global_meal_card.vue"
 export default
     {
@@ -37,14 +39,21 @@ export default
             },
             async change_category(category){
                 this.meals = await fetchByCategory(category)
-            }
+            },
+            retrieve_meal(clicked_meal){
+            this.$emit("meal_clicked", clicked_meal)
+            console.log(clicked_meal)
+            },
+            go_back(){
+            this.$emit("go_back", "meals")
+        }
         },
         props: {
             category: "",
             is_visible: true
         },
         components: {
-            global_meal_card,
+            global_meal_card, return_button
         }
     }
 </script>
@@ -56,5 +65,13 @@ export default
     border-radius: 5px;
     color: antiquewhite;
     width: 100rem;
+}
+.return_button {
+    width: 30rem;
+    border-radius: 5px;
+    margin: 0.65%;
+    width: 30rem;
+    font-size: 1.5rem;
+    height: 6rem;
 }
 </style>
