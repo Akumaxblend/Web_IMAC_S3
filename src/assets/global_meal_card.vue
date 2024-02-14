@@ -38,11 +38,10 @@ export default
 <style scoped>
 .content {
     padding: 1%;
-    display: inline-flex;
+    display:inline-block;
     background-color: #7F5539;
-    color: antiquewhite;
+    color: #EDE0D4;
     border-radius: 5px;
-    width: 30rem;
     margin: 0.3%;
 }
 .meal_title
@@ -54,8 +53,15 @@ export default
 }
 img
 {
-    margin: 2%;
+    margin: 5%;
     border-radius: 5px;
-    max-block-size: 5rem;
+    max-width: 90%;
+}
+button{
+    background-color: #7F5539;
+    border: 2px solid #EDE0D4;
+    border-radius: 5px;
+    width: 30%;
+    margin: 0.3%;   
 }
 </style>

@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div class="vertical_center">
     <all_meal_category v-on:category_clicked="show_meal_by_category" :is_visible="are_categories_visible"/>
 
     <all_global_meal_card v-on:go_back="go_back" v-on:meal_clicked="show_recipe" ref="meals" :category="clicked_category" :is_visible="are_meals_visible"/>
@@ -40,11 +40,11 @@ export default {
       this.$refs.recipe.change_meal(clicked_meal)
     },
     go_back(origin){
-      if(origin == "meals"){
+      if(this.are_meals_visible){
         this.are_meals_visible = !this.are_meals_visible
         this.are_categories_visible = !this.are_categories_visible
       }
-      if(origin== "recipe"){
+      if(this.is_recipe_visible){
         this.is_recipe_visible = !this.is_recipe_visible
         this.are_meals_visible = !this.are_meals_visible
       }
@@ -55,7 +55,12 @@ export default {
 </script>
 
 <style>
-div{
+/* div{
   display: block;
+} */
+.vertical_center{
+  display: flex;
+  margin: auto;
+  width: 100%;
 }
 </style>

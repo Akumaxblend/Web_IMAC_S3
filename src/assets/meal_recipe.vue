@@ -1,11 +1,16 @@
 <template>
     <div class="content" v-show="is_visible">
         <return_button v-on:go_back="go_back"/>
-        <img :src="meal.strMealThumb"/>
-        <h2 class="meal_title">{{ meal.strMeal }}</h2>
-        <div>
-            <ingredient_card v-for="i in ingredients" :ingredient_name="meal['strIngredient' + i]" :ingredient_quantity="meal['strMeasure' + i]" :ingredient_img="'https://www.themealdb.com/images/ingredients/' + meal['strIngredient' + i]+ '-small.png'"/>
+        <div class="recipe_header">
+            <img class="meal_img" :src="meal.strMealThumb"/>
+            <div class="header_texts">
+                <h2 class="meal_title">{{ meal.strMeal }}</h2>
+                <div class="ingredients">
+                    <ingredient_card v-for="i in ingredients" :ingredient_name="meal['strIngredient' + i]" :ingredient_quantity="meal['strMeasure' + i]" :ingredient_img="'https://www.themealdb.com/images/ingredients/' + meal['strIngredient' + i]+ '-small.png'"/>
+                </div>
+            </div>
         </div>
+        
         <p class="instructions">{{meal.strInstructions}}</p>
     </div>
 </template>
@@ -49,8 +54,39 @@ export default
     }
 </script>
 
-<style>
-.content{
-    color: black;
+<style scoped>
+.meal_img{
+    border-radius: 5px;
+    width: 50%;
+    height: 50%;
+}
+.recipe_header{
+    display:inline-flex;
+    width: 100%;
+}
+.header_texts{   
+    display: flex;
+    flex-wrap: wrap;
+    width: 50%;
+}
+.ingredients{
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-around;
+}
+h2{
+    color: #7F5539;
+    margin: auto;
+    border-radius: 5px;
+    font-size: 3rem;
+}
+p{
+    background-color: #EDE0D4;
+    font-size: 2rem;
+    color: #7F5539;
+    border-radius: 5px;
+    text-justify:auto;
+    padding: 1%;
+    margin-bottom: 1%;
 }
 </style>

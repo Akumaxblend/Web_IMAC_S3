@@ -11,7 +11,12 @@ export default {}
 <style>
 #footer {
     display: flex;
-    background-color: yellow;
+    background-color: #9C6644;
+    color: #EDE0D4;
+    margin: auto;
+    min-height: 6rem;
+}
+h1{
     margin: auto;
 }
 </style>

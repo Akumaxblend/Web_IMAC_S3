@@ -1,7 +1,7 @@
 <template>
     <div class="content">
-        <img :src="ingredient_img"/>
-        <p class="meal_title">{{ ingredient_name }} : {{ ingredient_quantity }}</p>
+        <img class="ingredient_img" :src="ingredient_img"/>
+        <p class="meal_title"><b>{{ ingredient_name }}</b> : {{ ingredient_quantity }}</p>
     </div>
 </template>
 
@@ -25,9 +25,24 @@ export default
     }
 </script>
 
-<style>
+<style scoped>
+.ingredient_img{
+    margin: auto;
+    width: 100%;
+}
 .content{
-    color: black;
-    display: inline-block;
+    color: #7F5539;
+    background-color: #EDE0D4;
+    display:inline-flex;
+    margin: 1%;
+    padding: 0.3%;
+    border-radius: 5px;
+    width: 21%;
+}
+p{
+    margin: auto;
+}
+b{
+    font-weight: bold;
 }
 </style>

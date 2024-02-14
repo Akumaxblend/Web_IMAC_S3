@@ -1,10 +1,12 @@
 <template>
-    <div class="meal_list" v-show="is_visible">
+    <div class="wrapper" v-show="is_visible">
         <div class="gallery-options">
         <input type="text" v-model="search" placeholder="Search meals">
         </div>
+        <div class="meal_list" v-show="is_visible">
         <return_button class="return_button" v-on:go_back="go_back"/>
         <global_meal_card v-for="meal in meals.meals" v-on:meal_clicked="retrieve_meal" :is_visible="contains_word(meal, search)" :meal_img="meal.strMealThumb" :meal_name="meal.strMeal" :meal_id="meal.idMeal"/>
+        </div>
     </div>
 </template>
 
@@ -59,19 +61,7 @@ export default
 </script>
 
 <style>
-.content {
-    padding: 1%;
-    margin: auto;
-    border-radius: 5px;
-    color: antiquewhite;
-    width: 100rem;
-}
-.return_button {
-    width: 30rem;
-    border-radius: 5px;
-    margin: 0.65%;
-    width: 30rem;
-    font-size: 1.5rem;
-    height: 6rem;
-}
+/* .wrapper{
+    display: flex;
+} */
 </style>

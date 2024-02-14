@@ -5,13 +5,22 @@
 </template>
 
 <script>
-export default {}
+import return_button from '@/return_button.vue';
+export default {
+    components: {return_button},
+    methods: {
+        go_back(){
+            this.$emit("go_back", "meals")}
+    }
+}
 </script>
 
 <style>
 #header {
     display: flex;
-    background-color: yellow;
+    background-color: #9C6644;
+    color: #EDE0D4;
     margin: auto;
+    min-height: 6rem;
 }
 </style>

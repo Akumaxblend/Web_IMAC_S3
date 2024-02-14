@@ -28,16 +28,15 @@ export default {
 }
 </script>
 
-<style>
+<style scoped>
 .meal_category 
 {
-    display: inline-flex;
+    display:inline-flex;
     margin-left: auto;
-    background-color: #eeeeee;
+    background-color: #EDE0D4;
+    color:#7F5539;
     border-radius: 5px;
-    margin: 0.1%;
-    width: 30rem;
-    padding-right: 5%;
+    width: 100%;
 }
 .meal_title
 {
@@ -50,9 +49,13 @@ img
 {
     margin: 2%;
     border-radius: 5px;
-    max-block-size: 5rem;
+    max-width: 30%;
 }
 button{
-    margin: 5px;
+    margin: 0.3% ;
+    border: 2px solid #7F5539;
+    background-color: #EDE0D4;
+    border-radius: 5px;
+    width:30%;
 }
 </style>

@@ -37,6 +37,9 @@ export default {
 <style>
 .meal_list
 {
-    width:100rem;
+    width:100%;
+    display:flex;
+    flex-wrap: wrap;
+    justify-content:space-around;
 }
 </style>
