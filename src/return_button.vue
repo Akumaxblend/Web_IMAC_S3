@@ -16,7 +16,7 @@ export default{
 </script>
 <style scoped>
 button{
-    width:30%;
+    width:80%;
     padding: 1%;
     font-size: 1.5rem;
     vertical-align:bottom;
@@ -28,5 +28,16 @@ button{
 }
 img{
    width: 25%;
+}
+
+@media (min-aspect-ratio: 0.75){
+    button{
+        width: 45%;
+    }
+}
+@media (min-aspect-ratio: 1.7){
+    button{
+        width: 30%;
+    }
 }
 </style>

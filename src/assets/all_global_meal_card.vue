@@ -60,8 +60,19 @@ export default
     }
 </script>
 
-<style>
-/* .wrapper{
+<style scoped>
+input{
+    width:50%;
+    margin:auto;
+    color: #7F5539;
+    background-color: #EDE0D4;
+    height: 2rem;
+    border-radius: 5px;
+    border: none;
+}
+.gallery-options{
+    width: 100%;
     display: flex;
-} */
+    margin: 1%;
+}
 </style>

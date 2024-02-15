@@ -57,17 +57,17 @@ export default
 <style scoped>
 .meal_img{
     border-radius: 5px;
-    width: 50%;
+    width: 100%;
     height: 50%;
 }
 .recipe_header{
-    display:inline-flex;
+    display:block;
     width: 100%;
 }
 .header_texts{   
     display: flex;
     flex-wrap: wrap;
-    width: 50%;
+    width: 100%;
 }
 .ingredients{
     display: flex;
@@ -78,7 +78,7 @@ h2{
     color: #7F5539;
     margin: auto;
     border-radius: 5px;
-    font-size: 3rem;
+    font-size: 3rem;    
 }
 p{
     background-color: #EDE0D4;
@@ -88,5 +88,23 @@ p{
     text-justify:auto;
     padding: 1%;
     margin-bottom: 1%;
+}
+button{
+    margin: auto;
+}
+
+@media (min-aspect-ratio: 0.7){
+    
+}
+@media (min-aspect-ratio: 1.7){
+    .recipe_header{
+        display: inline-flex;
+    }
+    .meal_img{
+        width: 50%;
+    }
+    .header_texts{
+        width: 50%;
+    }
 }
 </style>

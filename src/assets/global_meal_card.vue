@@ -61,7 +61,18 @@ button{
     background-color: #7F5539;
     border: 2px solid #EDE0D4;
     border-radius: 5px;
-    width: 30%;
+    width: 80%;
     margin: 0.3%;   
+}
+
+@media (min-aspect-ratio: 0.7){
+    button{
+        width: 45%;
+    }
+}
+@media (min-aspect-ratio: 1.7){
+    button{
+        width: 30%;
+    }
 }
 </style>

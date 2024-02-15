@@ -37,12 +37,20 @@ export default
     margin: 1%;
     padding: 0.3%;
     border-radius: 5px;
-    width: 21%;
+    width: 42%;
 }
 p{
     margin: auto;
 }
 b{
     font-weight: bold;
+}
+@media (min-aspect-ratio: 0.7){
+    
+}
+@media (min-aspect-ratio: 1.7){
+    .content{
+        width: 21%;
+    }
 }
 </style>
