@@ -28,7 +28,7 @@ export default
 <style scoped>
 .ingredient_img{
     margin: auto;
-    width: 100%;
+    width: 50%;
 }
 .content{
     color: #7F5539;
@@ -41,6 +41,7 @@ export default
 }
 p{
     margin: auto;
+    width: 50%;
 }
 b{
     font-weight: bold;

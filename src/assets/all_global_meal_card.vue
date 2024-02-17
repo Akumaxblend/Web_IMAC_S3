@@ -1,7 +1,7 @@
 <template>
     <div class="wrapper" v-show="is_visible">
         <div class="gallery-options">
-        <input type="text" v-model="search" placeholder="Search meals">
+        <input type="text" id="search_input" v-on:input="synch_input" placeholder="Search meals">
         </div>
         <div class="meal_list" v-show="is_visible">
         <return_button class="return_button" v-on:go_back="go_back"/>
@@ -36,7 +36,7 @@ export default
             // }
             contains_word(meal, word){
                 let meal_string = JSON.stringify(meal).toLowerCase()
-                if (meal_string.toLowerCase().includes(word)) return true
+                if (meal_string.indexOf(word.toLowerCase()) >= 0) return true
                 return false
             },
             async change_category(category){
@@ -48,7 +48,11 @@ export default
             },
             go_back(){
             this.$emit("go_back", "meals")
-        }
+            },
+            synch_input(){
+                this.search = document.getElementById("search_input").value
+            }
+            
         },
         props: {
             category: "",

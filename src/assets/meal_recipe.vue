@@ -78,11 +78,11 @@ h2{
     color: #7F5539;
     margin: auto;
     border-radius: 5px;
-    font-size: 3rem;    
+    font-size: 1.5rem;    
 }
 p{
     background-color: #EDE0D4;
-    font-size: 2rem;
+    font-size: 1rem;
     color: #7F5539;
     border-radius: 5px;
     text-justify:auto;
@@ -105,6 +105,12 @@ button{
     }
     .header_texts{
         width: 50%;
+    }
+    p{
+        font-size: 2rem;
+    }
+    h2{
+        font-size: 3rem;
     }
 }
 </style>

@@ -43,7 +43,7 @@ export default {
     margin:auto;
     margin-left: auto;
     margin-right: auto;
-    font-size: 1.5rem;
+    font-size: 1rem;
 }
 img
 {
@@ -62,10 +62,16 @@ button{
     button{
         width: 45%;
     }
+    .meal_title{
+        font-size: 1rem;
+    }
 }
 @media (min-aspect-ratio: 1.7){
     button{
         width: 30%;
+    }
+    .meal_title{
+        font-size: 1.5rem;
     }
 }
 </style>
