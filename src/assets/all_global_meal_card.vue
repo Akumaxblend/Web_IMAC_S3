@@ -11,7 +11,7 @@
 </template>
 
 <script>
-import { fetchByCategory } from "@/services/api.js"
+import { fetchByCategory, fetchAllMeals } from "@/services/api.js"
 import return_button from "@/return_button.vue"
 import global_meal_card from "./global_meal_card.vue"
 export default
@@ -25,6 +25,7 @@ export default
         },
         created: async function(){
             this.meals = await fetchByCategory("Vegetarian")
+            fetchAllMeals()
         },
         // updated: async function(){
         //     this.meals = await fetchByCategory(this.category)

@@ -11,7 +11,7 @@
             </div>
         </div>
         
-        <p class="instructions">{{meal.strInstructions}}</p>
+        <p class="instructions" v-for="i in instructions">{{i}}</p>
     </div>
 </template>
 
@@ -25,7 +25,8 @@ export default
         data() {
             return{
                 meal: [],
-                ingredients: {}
+                ingredients: {},
+                instructions: []
             }
         },
         // created: async function(){
@@ -38,6 +39,7 @@ export default
                 this.meal = await fetchById(meal_id);
                 this.meal = this.meal.meals[0];
                 this.ingredients = await fetchIngredientNumber(this.meal)
+                this.instructions = this.meal.strInstructions.split('\n')
             },
             go_back(){
                 this.$emit("go_back", "recipe")

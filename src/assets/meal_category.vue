@@ -50,6 +50,7 @@ img
     margin: 2%;
     border-radius: 5px;
     max-width: 30%;
+    max-height: 30%;
 }
 button{
     margin: 0.3% ;

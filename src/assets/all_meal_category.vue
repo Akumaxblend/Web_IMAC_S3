@@ -1,5 +1,6 @@
 <template>
     <div class="meal_list" v-show="is_visible">
+        <meal_category v-on:click_on_category="retrieve_category" :picture="'/src/img/all.png'" :category_name="'Everything'"/>
         <meal_category  v-for="category in categories.categories" v-on:click_on_category="retrieve_category" :picture="category.strCategoryThumb" :category_name="category.strCategory"/>
     </div>
 </template>
