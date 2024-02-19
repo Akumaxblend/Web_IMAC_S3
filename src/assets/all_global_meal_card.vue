@@ -3,9 +3,10 @@
         <div class="gallery-options">
         <input type="text" id="search_input" v-on:input="synch_input" placeholder="Search meals">
         </div>
+        <button v-on:click="go_top" id="top_button">TOP</button>
         <div class="meal_list" v-show="is_visible">
         <return_button class="return_button" v-on:go_back="go_back"/>
-        <global_meal_card v-for="meal in meals.meals" v-on:meal_clicked="retrieve_meal" :is_visible="contains_word(meal, search)" :meal_img="meal.strMealThumb" :meal_name="meal.strMeal" :meal_id="meal.idMeal"/>
+        <global_meal_card v-for="meal in meals.meals" v-on:meal_clicked="retrieve_meal" :is_visible="contains_word(meal, search)" :meal_img="meal.strMealThumb" :meal_name="meal.strMeal" :meal_id="meal.idMeal"  :id="meal.idMeal"/>
         </div>
     </div>
 </template>
@@ -27,14 +28,8 @@ export default
             this.meals = await fetchByCategory("Vegetarian")
             fetchAllMeals()
         },
-        // updated: async function(){
-        //     this.meals = await fetchByCategory(this.category)
-        // },
         methods:
         {
-            // async getRandomMeal() {
-            //     this.randomMeal = await fetchRandom().meals[0].strMealThumb
-            // }
             contains_word(meal, word){
                 let meal_string = JSON.stringify(meal).toLowerCase()
                 if (meal_string.indexOf(word.toLowerCase()) >= 0) return true
@@ -52,6 +47,15 @@ export default
             },
             synch_input(){
                 this.search = document.getElementById("search_input").value
+            },
+            go_top(){
+                // document.body.scrollTop = 0;
+                // document.documentElement.scrollTop = 0;
+                window.scroll({top:0, behavior:"smooth"})
+            },
+            scroll_to_last_meal(meal_id){
+                const el = document.getElementById(meal_id)
+                window.scroll(0, el.offsetTop)
             }
             
         },
@@ -79,5 +83,14 @@ input{
     width: 100%;
     display: flex;
     margin: 1%;
+}
+#top_button{
+    position: fixed;
+    bottom:50%;
+    padding: 1rem;
+    color:#7F5539;
+    background-color: #EDE0D4;
+    border: 2px solid #7F5539;
+    border-radius: 5px;
 }
 </style>

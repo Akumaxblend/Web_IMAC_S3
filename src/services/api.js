@@ -30,7 +30,6 @@ let fetchRandom = async () => { return await (await (await fetch("https://www.th
 let fetchByCategory = async (category) => { 
   if(category == "Everything"){
     let meals = await fetchAllMeals()
-    console.log(meals)
     return await meals
   }
   return await (await fetch("https://www.themealdb.com/api/json/v1/1/filter.php?c="+category)).json()

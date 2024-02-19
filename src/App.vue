@@ -16,6 +16,7 @@ import all_global_meal_card from"./assets/all_global_meal_card.vue"
 import meal_category from "./assets/meal_category.vue"
 import all_meal_category from "./assets/all_meal_category.vue"
 import meal_recipe from "./assets/meal_recipe.vue"
+
 export default {
   components: { all_global_meal_card, global_meal_card, all_meal_category, meal_category, meal_recipe 
   },
@@ -24,7 +25,8 @@ export default {
       are_categories_visible : true,
       are_meals_visible : false,
       is_recipe_visible : false,
-      clicked_category : ""
+      clicked_category : "",
+      last_visited_meal : 0
     }
   },
   methods: {
@@ -38,15 +40,18 @@ export default {
       this.is_recipe_visible = true
       this.are_meals_visible = false 
       this.$refs.recipe.change_meal(clicked_meal)
+      this.last_visited_meal = clicked_meal
     },
-    go_back(origin){
+    async go_back(origin){
       if(this.are_meals_visible){
         this.are_meals_visible = !this.are_meals_visible
         this.are_categories_visible = !this.are_categories_visible
       }
       if(this.is_recipe_visible){
         this.is_recipe_visible = !this.is_recipe_visible
-        this.are_meals_visible = !this.are_meals_visible
+        await (this.are_meals_visible = !this.are_meals_visible)
+        this.$refs.meals.scroll_to_last_meal(this.last_visited_meal)
+        console.log(this.last_visited_meal)
       }
       
     }
