@@ -9,7 +9,14 @@
   
 </template>
 
-<!-- éventuellement regarder pour importer dans la balise script le nom de la categorie direct-->
+<!-- éventuellement regarder pour importer dans la balise script le nom de la categorie direct
+
+
+Creuser la partie tri et fonctionnalité : chercher un ingrédient + trier par complexité croissante / décroissante 
+chercher un ingrédient  => priorité
+
+anims : visuel, hover, evenements clics
+-->
 <script>
 import global_meal_card from "./assets/global_meal_card.vue"
 import all_global_meal_card from"./assets/all_global_meal_card.vue"
@@ -35,12 +42,14 @@ export default {
         this.are_categories_visible = false
         this.are_meals_visible = true
         this.$refs.meals.change_category(clicked_category)
+        window.scrollTo(0, 0)
     },
     show_recipe(clicked_meal){
       this.is_recipe_visible = true
       this.are_meals_visible = false 
       this.$refs.recipe.change_meal(clicked_meal)
       this.last_visited_meal = clicked_meal
+      window.scrollTo(0, 0)
     },
     async go_back(origin){
       if(this.are_meals_visible){

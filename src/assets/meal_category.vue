@@ -37,6 +37,9 @@ export default {
     color:#7F5539;
     border-radius: 5px;
     width: 100%;
+    font-family: "Kanit", sans-serif;
+  font-weight: 100;
+  font-style: normal;
 }
 .meal_title
 {

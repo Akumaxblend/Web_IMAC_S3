@@ -1,6 +1,9 @@
 <template>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
     <div id="footer">
-        <h1>OH DAMN LE FOOTER DU SITE</h1>
+        <span class="material-symbols-outlined">
+            cookie
+        </span>
     </div>
 </template>
 
@@ -15,8 +18,15 @@ export default {}
     color: #EDE0D4;
     margin: auto;
     min-height: 6rem;
+    font-size: 60px;
 }
-h1{
-    margin: auto;
+
+.material-symbols-outlined {
+  font-variation-settings:
+  'FILL' 0,
+  'wght' 400,
+  'GRAD' 0,
+  'opsz' 24;
+  margin: auto;
 }
 </style>

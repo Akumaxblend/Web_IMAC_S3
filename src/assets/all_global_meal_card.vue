@@ -6,7 +6,7 @@
         <button v-on:click="go_top" id="top_button">TOP</button>
         <div class="meal_list" v-show="is_visible">
         <return_button class="return_button" v-on:go_back="go_back"/>
-        <global_meal_card v-for="meal in meals.meals" v-on:meal_clicked="retrieve_meal" :is_visible="contains_word(meal, search)" :meal_img="meal.strMealThumb" :meal_name="meal.strMeal" :meal_id="meal.idMeal"  :id="meal.idMeal"/>
+        <global_meal_card v-for="meal in filtered_meals.meals" v-on:meal_clicked="retrieve_meal" :is_visible="contains_word(meal, search)" :meal_img="meal.strMealThumb" :meal_name="meal.strMeal" :meal_id="meal.idMeal"  :id="meal.idMeal"/>
         </div>
     </div>
 </template>
@@ -22,6 +22,11 @@ export default
             return{
                 meals: [],
                 search: ""
+            }
+        },
+        computed: {
+            filtered_meals: function(){
+                return this.meals
             }
         },
         created: async function(){
@@ -49,8 +54,6 @@ export default
                 this.search = document.getElementById("search_input").value
             },
             go_top(){
-                // document.body.scrollTop = 0;
-                // document.documentElement.scrollTop = 0;
                 window.scroll({top:0, behavior:"smooth"})
             },
             scroll_to_last_meal(meal_id){

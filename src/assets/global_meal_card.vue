@@ -43,6 +43,9 @@ export default
     color: #EDE0D4;
     border-radius: 5px;
     margin: 0.3%;
+    font-family: "Kanit", sans-serif;
+    font-weight: 100;
+    font-style: normal;
 }
 .meal_title
 {
