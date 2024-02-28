@@ -1,5 +1,5 @@
 <template>
-    <button v-show="is_visible" v-on:click="meal_clicked">
+    <button v-on:click="meal_clicked">
     <div class="content">
         <img :src="meal_img"/>
         <h2 class="meal_title">{{ meal_name }}</h2>
@@ -17,9 +17,6 @@ export default
                 randomMeal: []
             }
         },
-        // beforeCreate: async function(){
-        // this.randomMeal = await fetchRandom().meals[0].strMeal
-        // },
         methods:{
             meal_clicked(){
                 this.$emit("meal_clicked", this.meal_id)

@@ -2,11 +2,16 @@
     <div class="wrapper" v-show="is_visible">
         <div class="gallery-options">
         <input type="text" id="search_input" v-on:input="synch_input" placeholder="Search meals">
+        <select id="order_by" v-model="order_type">
+            <option value="AZmeals">A-Z</option>
+            <option value="DifficultyUp">Difficulty &triangle;</option>
+            <option value="DifficultyDown">Difficulty &triangledown;</option>
+        </select>
         </div>
         <button v-on:click="go_top" id="top_button">TOP</button>
         <div class="meal_list" v-show="is_visible">
         <return_button class="return_button" v-on:go_back="go_back"/>
-        <global_meal_card v-for="meal in filtered_meals.meals" v-on:meal_clicked="retrieve_meal" :is_visible="contains_word(meal, search)" :meal_img="meal.strMealThumb" :meal_name="meal.strMeal" :meal_id="meal.idMeal"  :id="meal.idMeal"/>
+        <global_meal_card v-for="meal in filtered_meals" v-on:meal_clicked="retrieve_meal" :meal_img="meal.strMealThumb" :meal_name="meal.strMeal" :meal_id="meal.idMeal"  :id="meal.idMeal"/>
         </div>
     </div>
 </template>
@@ -21,12 +26,22 @@ export default
         data() {
             return{
                 meals: [],
-                search: ""
+                search: "",
+                order_type: "AZmeals"
             }
         },
         computed: {
             filtered_meals: function(){
-                return this.meals
+                const filter_search_name = (meal) => meal.strMeal.toLowerCase().includes(this.search.toLowerCase())
+                const filter_search_ingredient = (meal) => JSON.stringify(meal).toLowerCase().includes(this.search.toLowerCase())
+                if(this.meals.meals){
+                    let toreturn = this.meals.meals.filter(filter_search_ingredient)
+                    if(this.order_type == "AZmeals") toreturn.sort((a,b) => a.strMeal.charAt(0).localeCompare(b.strMeal.charAt(0)))
+                    else if(this.order_type == "DifficultyUp") toreturn.sort((a,b) => a.strInstructions.length - b.strInstructions.length)
+                    else toreturn.sort((a,b) => b.strInstructions.length - a.strInstructions.length)
+                    return toreturn
+                }
+                return []  
             }
         },
         created: async function(){
