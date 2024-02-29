@@ -56,6 +56,7 @@ let fetchByCategory = async (category) => {
 }
 
 let fetchCategories = async () => {return await (await fetch("https://www.themealdb.com/api/json/v1/1/categories.php")).json()}
+let fetchCountries = async() => {return await (await fetch("https://www.themealdb.com/api/json/v1/1/list.php?a=list")).json()}
 let fetchById = async(meal_id) => {return await( await fetch("https://www.themealdb.com/api/json/v1/1/lookup.php?i="+meal_id)).json()}
 
 let fetchIngredientNumber = async(meal) => {
@@ -68,4 +69,4 @@ let fetchIngredientNumber = async(meal) => {
         number ++
     }return number
 }
-export {fetchByCategory, fetchCategories, fetchRandom, fetchById, fetchIngredientNumber, fetchAllMeals}
+export {fetchByCategory, fetchCategories, fetchRandom, fetchById, fetchIngredientNumber, fetchAllMeals, fetchCountries}

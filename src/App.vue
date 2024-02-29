@@ -76,5 +76,6 @@ export default {
   display: flex;
   margin: auto;
   width: 100%;
+  min-height: 100%;
 }
 </style>

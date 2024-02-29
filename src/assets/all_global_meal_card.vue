@@ -9,6 +9,10 @@
             <option value="DifficultyUp">Difficulty &triangle;</option>
             <option value="DifficultyDown">Difficulty &triangledown;</option>
         </select>
+        <select id="country" v-model="country">
+            <option value="">All countries</option>
+            <option v-for="country in countries.meals" :value="country.strArea">{{ country.strArea }}</option>
+        </select>
         </div>
         <button v-on:click="go_top" id="top_button">TOP</button>
         <div class="meal_list" v-show="is_visible">
@@ -19,7 +23,7 @@
 </template>
 
 <script>
-import { fetchByCategory, fetchAllMeals } from "@/services/api.js"
+import { fetchByCategory, fetchCountries } from "@/services/api.js"
 import return_button from "@/return_button.vue"
 import global_meal_card from "./global_meal_card.vue"
 export default
@@ -28,18 +32,22 @@ export default
         data() {
             return{
                 meals: [],
+                countries: [],
                 search: "",
                 ingredient1: "",
                 ingredient2: "",
-                order_type: "AZmeals"
+                order_type: "AZmeals",
+                country: ""
             }
         },
         computed: {
             filtered_meals: function(){
                 const filter_search_name = (meal) => meal.strMeal.toLowerCase().includes(this.search.toLowerCase())
-                const filter_search_ingredient = (meal) => (JSON.stringify(meal).toLowerCase().includes(this.search.toLowerCase()) && JSON.stringify(meal).toLowerCase().includes(this.ingredient1.toLowerCase()) && JSON.stringify(meal).toLowerCase().includes(this.ingredient2.toLowerCase()))
+                const filter_search = (meal) => (JSON.stringify(meal).toLowerCase().includes(this.search.toLowerCase()) && JSON.stringify(meal).toLowerCase().includes(this.ingredient1.toLowerCase()) && JSON.stringify(meal).toLowerCase().includes(this.ingredient2.toLowerCase()))
+                const filter_country = (meal) => JSON.stringify(meal.strArea).toLowerCase().includes(this.country.toLowerCase())
                 if(this.meals.meals){
-                    let toreturn = this.meals.meals.filter(filter_search_ingredient)
+                    let toreturn = this.meals.meals.filter(filter_search)
+                    toreturn = toreturn.filter(filter_country)
                     if(this.order_type == "AZmeals") toreturn.sort((a,b) => a.strMeal.charAt(0).localeCompare(b.strMeal.charAt(0)))
                     else if(this.order_type == "DifficultyUp") toreturn.sort((a,b) => a.strInstructions.length - b.strInstructions.length)
                     else toreturn.sort((a,b) => b.strInstructions.length - a.strInstructions.length)
@@ -50,7 +58,7 @@ export default
         },
         created: async function(){
             this.meals = await fetchByCategory("Vegetarian")
-            fetchAllMeals()
+            this.countries = await fetchCountries()
         },
         methods:
         {
@@ -95,17 +103,27 @@ export default
 
 <style scoped>
 input{
-    width:50%;
-    margin:auto;
+    width:90%;
+    margin: 1% auto;
     color: #7F5539;
     background-color: #EDE0D4;
     height: 2rem;
     border-radius: 5px;
     border: none;
 }
+select{
+    margin: 1% auto;
+    width: 40%;
+    height: 2rem;
+    color: #7F5539;
+    background-color: #EDE0D4;
+    border: none;
+    border-radius: 5px;
+}
 .gallery-options{
     width: 100%;
     display: flex;
+    flex-wrap: wrap;
     margin: 1%;
 }
 #top_button{
@@ -116,5 +134,30 @@ input{
     background-color: #EDE0D4;
     border: 2px solid #7F5539;
     border-radius: 5px;
+}
+.wrapper{
+    width: 100%;
+    min-height: 100%;
+}
+.meal_list{
+    min-height: 80%;
+}
+@media (min-aspect-ratio: 0.7){
+    input{
+    width:45%;
+    }
+
+    select{
+    width: 20%;
+    }
+}
+@media (min-aspect-ratio: 1.7){
+    input{
+    width:25%;
+    }
+
+    select{
+    width: 10%;
+    }
 }
 </style>
