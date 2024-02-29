@@ -2,6 +2,8 @@
     <div class="wrapper" v-show="is_visible">
         <div class="gallery-options">
         <input type="text" id="search_input" v-on:input="synch_input" placeholder="Search meals">
+        <input type="text" id="ingredient1_input" v-on:input="synch_input" placeholder="Ingredient 1">
+        <input type="text" id="ingredient2_input" v-on:input="synch_input" placeholder="Ingredient 2">
         <select id="order_by" v-model="order_type">
             <option value="AZmeals">A-Z</option>
             <option value="DifficultyUp">Difficulty &triangle;</option>
@@ -27,13 +29,15 @@ export default
             return{
                 meals: [],
                 search: "",
+                ingredient1: "",
+                ingredient2: "",
                 order_type: "AZmeals"
             }
         },
         computed: {
             filtered_meals: function(){
                 const filter_search_name = (meal) => meal.strMeal.toLowerCase().includes(this.search.toLowerCase())
-                const filter_search_ingredient = (meal) => JSON.stringify(meal).toLowerCase().includes(this.search.toLowerCase())
+                const filter_search_ingredient = (meal) => (JSON.stringify(meal).toLowerCase().includes(this.search.toLowerCase()) && JSON.stringify(meal).toLowerCase().includes(this.ingredient1.toLowerCase()) && JSON.stringify(meal).toLowerCase().includes(this.ingredient2.toLowerCase()))
                 if(this.meals.meals){
                     let toreturn = this.meals.meals.filter(filter_search_ingredient)
                     if(this.order_type == "AZmeals") toreturn.sort((a,b) => a.strMeal.charAt(0).localeCompare(b.strMeal.charAt(0)))
@@ -67,6 +71,8 @@ export default
             },
             synch_input(){
                 this.search = document.getElementById("search_input").value
+                this.ingredient1 = document.getElementById("ingredient1_input").value
+                this.ingredient2 = document.getElementById("ingredient2_input").value
             },
             go_top(){
                 window.scroll({top:0, behavior:"smooth"})
