@@ -57,7 +57,6 @@ export default
             }
         },
         created: async function(){
-            this.meals = await fetchByCategory("Vegetarian")
             this.countries = await fetchCountries()
         },
         methods:

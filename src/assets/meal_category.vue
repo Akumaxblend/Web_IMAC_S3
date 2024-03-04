@@ -35,7 +35,7 @@ export default {
     margin-left: auto;
     background-color: #EDE0D4;
     color:#7F5539;
-    border-radius: 5px;
+    border-radius: 20px;
     width: 100%;
     font-family: "Kanit", sans-serif;
   font-weight: 100;
@@ -51,7 +51,7 @@ export default {
 img
 {
     margin: 2%;
-    border-radius: 5px;
+    border-radius: 20px;
     max-width: 30%;
     max-height: 30%;
 }
@@ -59,8 +59,34 @@ button{
     margin: 0.3% ;
     border: 2px solid #7F5539;
     background-color: #EDE0D4;
-    border-radius: 5px;
+    border-radius: 20px;
     width:80%;
+}
+
+@keyframes fadeLightToDark {
+  from {background-color: #EDE0D4;}
+  to {background-color: #7F5539;}
+}
+@keyframes fadeDarkToLight {
+  to {color: #EDE0D4;}
+  from {color: #7F5539;}
+}
+@keyframes scaleTitle{
+    from{font-size: 1.5rem;}
+    to{font-size: 2rem;}
+}
+button:hover{
+    animation: fadeLightToDark 500ms forwards;
+
+    .meal_category{
+        animation: fadeLightToDark 500ms forwards;
+    }
+    .meal_title{
+        animation: fadeDarkToLight 500ms forwards;
+    }
+    h2{
+        animation: scaleTitle 500ms forwards;
+    }
 }
 @media (min-aspect-ratio: 0.75){
     button{
@@ -78,4 +104,5 @@ button{
         font-size: 1.5rem;
     }
 }
+
 </style>

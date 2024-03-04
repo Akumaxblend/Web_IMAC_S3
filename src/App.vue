@@ -41,6 +41,7 @@ export default {
         this.clicked_category = clicked_category
         this.are_categories_visible = false
         this.are_meals_visible = true
+        this.$refs.meals.meals = []
         this.$refs.meals.change_category(clicked_category)
         window.scrollTo(0, 0)
     },

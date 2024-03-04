@@ -1,8 +1,10 @@
 <template>
-    <div class="content">
+    <a :href="'https://www.google.com/search?q='+ingredient_name+'+traduction'" target="_blank">
+        <div class="content">
         <img class="ingredient_img" :src="ingredient_img"/>
         <p class="meal_title"><b>{{ ingredient_name }}</b> : {{ ingredient_quantity }}</p>
-    </div>
+        </div>
+    </a>
 </template>
 
 <script>
@@ -37,7 +39,11 @@ export default
     margin: 1%;
     padding: 0.3%;
     border-radius: 5px;
+    width: 100%;
+}
+a{
     width: 42%;
+    height: fit-content;
 }
 p{
     margin: auto;
@@ -51,6 +57,9 @@ b{
 }
 @media (min-aspect-ratio: 1.7){
     .content{
+        width: 100%;
+    }
+    a{
         width: 21%;
     }
 }

@@ -58,13 +58,15 @@ export default
 
 <style scoped>
 .meal_img{
-    border-radius: 5px;
-    width: 100%;
+    margin:2.5% 0% 0% 5%;
+    border-radius: 20px;
+    width: 90%;
     height: 50%;
 }
 .recipe_header{
     display:block;
     width: 100%;
+    margin-bottom: 2.5%;
 }
 .header_texts{   
     display: flex;
