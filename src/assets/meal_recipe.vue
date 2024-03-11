@@ -29,11 +29,6 @@ export default
                 instructions: []
             }
         },
-        // created: async function(){
-        //     this.meal = await fetchById(52772);
-        //     this.meal = this.meal.meals[0];
-        //     this.ingredients = await fetchIngredientNumber(this.meal)
-        // },
         methods:{
             async change_meal(meal_id){
                 this.meal = await fetchById(meal_id);
@@ -85,7 +80,8 @@ h2{
     font-size: 1.5rem;    
 }
 p{
-    background-color: #EDE0D4;
+    /* background-color: #EDE0D4; */
+    border-bottom: 2px solid #EDE0D4;
     font-size: 1rem;
     color: #7F5539;
     border-radius: 5px;

@@ -1,5 +1,5 @@
 <template>
-    <a :href="'https://www.google.com/search?q='+ingredient_name+'+traduction'" target="_blank">
+    <a :href="'https://www.google.com/search?q='+ingredient_name" target="_blank">
         <div class="content">
         <img class="ingredient_img" :src="ingredient_img"/>
         <p class="meal_title"><b>{{ ingredient_name }}</b> : {{ ingredient_quantity }}</p>
@@ -51,6 +51,23 @@ p{
 }
 b{
     font-weight: bold;
+}
+@keyframes fadeLightToDark {
+  from {background-color: #EDE0D4;}
+  to {background-color: #7F5539;}
+}
+@keyframes fadeDarkToLight {
+  to {color: #EDE0D4;}
+  from {color: #7F5539;}
+}
+
+a:hover{
+    div{
+        animation: fadeLightToDark 500ms forwards;
+    }
+    p{
+        animation: fadeDarkToLight 500ms forwards;
+    }
 }
 @media (min-aspect-ratio: 0.7){
     

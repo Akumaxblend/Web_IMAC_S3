@@ -1,9 +1,18 @@
 <template>
     <div class="wrapper" v-show="is_visible">
         <div class="gallery-options">
-        <input type="text" id="search_input" v-on:input="synch_input" placeholder="Search meals">
-        <input type="text" id="ingredient1_input" v-on:input="synch_input" placeholder="Ingredient 1">
-        <input type="text" id="ingredient2_input" v-on:input="synch_input" placeholder="Ingredient 2">
+            <div class ="input">
+                <input type="text" id="search_input" v-model="search" v-on:input="synch_input" placeholder="Search meals">
+                <button class="clear_input" v-on:click="clear_input(1)">x</button>
+            </div>
+            <div class ="input">
+                <input type="text" id="ingredient1_input" v-model="ingredient1" v-on:input="synch_input" placeholder="Ingredient 1">
+                <button class="clear_input" v-on:click="clear_input(2)">x</button>
+            </div>
+            <div class ="input">
+                <input type="text" id="ingredient2_input" v-model="ingredient2" v-on:input="synch_input" placeholder="Ingredient 2">
+                <button class="clear_input" v-on:click="clear_input(3)">x</button>
+            </div>
         <select id="order_by" v-model="order_type">
             <option value="AZmeals">A-Z</option>
             <option value="DifficultyUp">Difficulty &triangle;</option>
@@ -87,8 +96,14 @@ export default
             scroll_to_last_meal(meal_id){
                 const el = document.getElementById(meal_id)
                 window.scroll(0, el.offsetTop)
+            },
+            clear_input(number){
+                switch(number){
+                    case 1: this.search =""; console.log("clear lol");break;
+                    case 2: this.ingredient1 ="";break;
+                    case 3: this.ingredient2 ="";break;
+                }
             }
-            
         },
         props: {
             category: "",
@@ -102,13 +117,31 @@ export default
 
 <style scoped>
 input{
-    width:90%;
+    width:100%;
     margin: 1% auto;
     color: #7F5539;
     background-color: #EDE0D4;
     height: 2rem;
     border-radius: 5px;
     border: none;
+}
+.input{
+    width: 90%;
+    margin: auto;
+    position: relative;
+}
+.clear_input{
+    height: 2rem;
+    position: absolute;
+    bottom: 0;
+    right: 0;
+    top: 10%;
+    padding: 0% 2% 0% 10%;
+    appearance: none;
+    border: none;
+    border-radius: 5px;
+    color: #7F5539;
+    background-color: rgba(0,0,0,0);
 }
 select{
     margin: 1% auto;
@@ -142,7 +175,7 @@ select{
     min-height: 80%;
 }
 @media (min-aspect-ratio: 0.7){
-    input{
+    .input{
     width:45%;
     }
 
@@ -151,8 +184,8 @@ select{
     }
 }
 @media (min-aspect-ratio: 1.7){
-    input{
-    width:25%;
+    .input{
+    width: 25%;
     }
 
     select{
