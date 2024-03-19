@@ -1,5 +1,5 @@
 <template>
-    <div class="wrapper" v-show="is_visible">
+    <div class="wrapper">
         <div class="gallery-options">
             <div class ="input">
                 <input type="text" id="search_input" v-model="search" v-on:input="synch_input" placeholder="Search meals">
@@ -23,14 +23,15 @@
             <option v-for="country in countries.meals" :value="country.strArea">{{ country.strArea }}</option>
         </select>
         </div>
+
         <button v-on:click="go_top" id="top_button">TOP</button>
-        <div class="meal_list" v-show="is_visible">
-        <return_button class="return_button" v-on:go_back="go_back"/>
+        
+        <div class="meal_list">
         <global_meal_card v-for="meal in filtered_meals" v-on:meal_clicked="retrieve_meal" :meal_img="meal.strMealThumb" :meal_name="meal.strMeal" :meal_id="meal.idMeal"  :id="meal.idMeal"/>
         </div>
     </div>
 </template>
-
+ 
 <script>
 import { fetchByCategory, fetchCountries } from "@/services/api.js"
 import return_button from "@/return_button.vue"
@@ -54,12 +55,14 @@ export default
                 const filter_search_name = (meal) => meal.strMeal.toLowerCase().includes(this.search.toLowerCase())
                 const filter_search = (meal) => (JSON.stringify(meal).toLowerCase().includes(this.search.toLowerCase()) && JSON.stringify(meal).toLowerCase().includes(this.ingredient1.toLowerCase()) && JSON.stringify(meal).toLowerCase().includes(this.ingredient2.toLowerCase()))
                 const filter_country = (meal) => JSON.stringify(meal.strArea).toLowerCase().includes(this.country.toLowerCase())
+                console.log("STep 1")
                 if(this.meals.meals){
                     let toreturn = this.meals.meals.filter(filter_search)
                     toreturn = toreturn.filter(filter_country)
                     if(this.order_type == "AZmeals") toreturn.sort((a,b) => a.strMeal.charAt(0).localeCompare(b.strMeal.charAt(0)))
                     else if(this.order_type == "DifficultyUp") toreturn.sort((a,b) => a.strInstructions.length - b.strInstructions.length)
                     else toreturn.sort((a,b) => b.strInstructions.length - a.strInstructions.length)
+                    console.log("STep 2")
                     return toreturn
                 }
                 return []  
@@ -67,6 +70,7 @@ export default
         },
         created: async function(){
             this.countries = await fetchCountries()
+            this.meals = await fetchByCategory(this.$route.params.id)
         },
         methods:
         {
@@ -74,9 +78,6 @@ export default
                 let meal_string = JSON.stringify(meal).toLowerCase()
                 if (meal_string.indexOf(word.toLowerCase()) >= 0) return true
                 return false
-            },
-            async change_category(category){
-                this.meals = await fetchByCategory(category)
             },
             retrieve_meal(clicked_meal){
             this.$emit("meal_clicked", clicked_meal)

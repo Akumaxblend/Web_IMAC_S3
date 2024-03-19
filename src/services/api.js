@@ -7,22 +7,7 @@ let contains_word = (meal, word) => {
   return false
 }
 
-
-let fetchAllMeals = async() => { //Probleme : fetch tous les plats ne fonctionnerait pas à cause des restrictions d'api.
-  // let categories = await fetchCategories()
-  // let meals_categorized = []
-  // let all_meals = []
-  // let meals_dict = {}
-  // for(const category of categories.categories){ //On recup les meals de toutes les categories
-  //   meals_categorized.push(await fetchByCategory(category.strCategory))
-  // }
-  // for(const category of meals_categorized){
-  //   for(const meal of category.meals){
-  //     all_meals.push(meal)
-  //   }
-  // }
-  // meals_dict["meals"] = all_meals
-  // return meals_dict
+let fetchAllMeals = async() => { 
   let meals_by_letter = []
   let all_meals = []
   let meals_dict = {}

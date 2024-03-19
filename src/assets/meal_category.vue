@@ -1,14 +1,19 @@
 <template>
     <button v-on:click="click_on_category">
-    <div class="meal_category">
+    <RouterLink :to="'categorized-meals/'+category_name">
+        <div class="meal_category">
         <img :src=picture>
         <div class="meal_title"><h2>{{ category_name }}</h2></div>
     </div>
+    </RouterLink>
+    
     </button>
     
 </template>
 
 <script>
+import { RouterLink } from 'vue-router';
+
 export default {
     name: "meal_category",
     // data(){
@@ -21,10 +26,11 @@ export default {
         category_name: String
     },
     methods: {
-        click_on_category(){
-            this.$emit('click_on_category', this.category_name)
+        click_on_category() {
+            this.$emit('click_on_category', this.category_name);
         }
-    }
+    },
+    components: { RouterLink }
 }
 </script>
 

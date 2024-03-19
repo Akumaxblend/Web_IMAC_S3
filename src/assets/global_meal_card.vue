@@ -1,35 +1,39 @@
 <template>
     <button v-on:click="meal_clicked">
-    <div class="content">
+    <RouterLink :to="'../recipe/'+meal_id">
+        <div class="content">
         <img :src="meal_img"/>
         <h2 class="meal_title">{{ meal_name }}</h2>
     </div>
+    </RouterLink>
     </button>
 </template>
 
 <script>
+import { RouterLink } from 'vue-router';
+
 //import { fetchRandom } from "@/services/api.js"
 export default
     {
-        name: "global_meal_card",
-        data() {
-            return{
-                randomMeal: []
-            }
-        },
-        methods:{
-            meal_clicked(){
-                this.$emit("meal_clicked", this.meal_id)
-            }
-        },
-        props: {
-            meal_name:"",
-            meal_img: "",
-            meal_id: 0,
-            is_visible: true
+    name: "global_meal_card",
+    data() {
+        return {
+            randomMeal: []
+        };
+    },
+    methods: {
+        meal_clicked() {
+            this.$emit("meal_clicked", this.meal_id);
         }
-        
-    }
+    },
+    props: {
+        meal_name: "",
+        meal_img: "",
+        meal_id: 0,
+        is_visible: true
+    },
+    components: { RouterLink }
+}
 </script>
 
 <style scoped>

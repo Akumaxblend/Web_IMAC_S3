@@ -1,6 +1,5 @@
 <template>
-    <div class="content" v-show="is_visible">
-        <return_button v-on:go_back="go_back"/>
+    <div class="content">
         <div class="recipe_header">
             <img class="meal_img" :src="meal.strMealThumb"/>
             <div class="header_texts">
@@ -28,6 +27,9 @@ export default
                 ingredients: {},
                 instructions: []
             }
+        },
+        created: async function(){
+            await this.change_meal(this.$route.params.id)
         },
         methods:{
             async change_meal(meal_id){
@@ -88,6 +90,7 @@ p{
     text-justify:auto;
     padding: 1%;
     margin-bottom: 1%;
+    box-shadow: 5px 5px 5px #7F5539;
 }
 button{
     margin: auto;
