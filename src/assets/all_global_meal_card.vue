@@ -34,7 +34,6 @@
  
 <script>
 import { fetchByCategory, fetchCountries } from "@/services/api.js"
-import return_button from "@/return_button.vue"
 import global_meal_card from "./global_meal_card.vue"
 export default
     {
@@ -43,17 +42,16 @@ export default
             return{
                 meals: [],
                 countries: [],
-                search: "",
-                ingredient1: "",
-                ingredient2: "",
+                search: localStorage.getItem("search"),
+                ingredient1: localStorage.getItem("ingredient1"),
+                ingredient2: localStorage.getItem("ingredient2"),
                 order_type: "AZmeals",
                 country: ""
             }
         },
         computed: {
             filtered_meals: function(){
-                const filter_search_name = (meal) => meal.strMeal.toLowerCase().includes(this.search.toLowerCase())
-                const filter_search = (meal) => (JSON.stringify(meal).toLowerCase().includes(this.search.toLowerCase()) && JSON.stringify(meal).toLowerCase().includes(this.ingredient1.toLowerCase()) && JSON.stringify(meal).toLowerCase().includes(this.ingredient2.toLowerCase()))
+                const filter_search = (meal) => (JSON.stringify(meal).toLowerCase().includes(this.search.toLowerCase()+"") && JSON.stringify(meal).toLowerCase().includes(this.ingredient1.toLowerCase()+"") && JSON.stringify(meal).toLowerCase().includes(this.ingredient2.toLowerCase()+""))
                 const filter_country = (meal) => JSON.stringify(meal.strArea).toLowerCase().includes(this.country.toLowerCase())
                 console.log("STep 1")
                 if(this.meals.meals){
@@ -83,13 +81,13 @@ export default
             this.$emit("meal_clicked", clicked_meal)
             console.log(clicked_meal)
             },
-            go_back(){
-            this.$emit("go_back", "meals")
-            },
             synch_input(){
                 this.search = document.getElementById("search_input").value
                 this.ingredient1 = document.getElementById("ingredient1_input").value
                 this.ingredient2 = document.getElementById("ingredient2_input").value
+                localStorage.setItem("search", this.search)
+                localStorage.setItem("ingredient1", this.ingredient1)
+                localStorage.setItem("ingredient2", this.ingredient2)
             },
             go_top(){
                 window.scroll({top:0, behavior:"smooth"})
@@ -100,9 +98,9 @@ export default
             },
             clear_input(number){
                 switch(number){
-                    case 1: this.search =""; console.log("clear lol");break;
-                    case 2: this.ingredient1 ="";break;
-                    case 3: this.ingredient2 ="";break;
+                    case 1: this.search =""; localStorage.setItem("search", "");break;
+                    case 2: this.ingredient1 ="";localStorage.setItem("ingredient1", "");break;
+                    case 3: this.ingredient2 ="";localStorage.setItem("ingredient2", "");break;
                 }
             }
         },
@@ -111,7 +109,7 @@ export default
             is_visible: true
         },
         components: {
-            global_meal_card, return_button
+            global_meal_card
         }
     }
 </script>

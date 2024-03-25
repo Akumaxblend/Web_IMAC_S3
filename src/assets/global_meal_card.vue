@@ -1,6 +1,6 @@
 <template>
-    <button v-on:click="meal_clicked">
-    <RouterLink :to="'../recipe/'+meal_id">
+    <button>
+    <RouterLink :to="'../recipe/'+meal_id" target="_blank">
         <div class="content">
         <img :src="meal_img"/>
         <h2 class="meal_title">{{ meal_name }}</h2>
@@ -20,11 +20,6 @@ export default
         return {
             randomMeal: []
         };
-    },
-    methods: {
-        meal_clicked() {
-            this.$emit("meal_clicked", this.meal_id);
-        }
     },
     props: {
         meal_name: "",

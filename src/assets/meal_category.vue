@@ -6,9 +6,7 @@
         <div class="meal_title"><h2>{{ category_name }}</h2></div>
     </div>
     </RouterLink>
-    
-    </button>
-    
+    </button>  
 </template>
 
 <script>
@@ -16,11 +14,6 @@ import { RouterLink } from 'vue-router';
 
 export default {
     name: "meal_category",
-    // data(){
-    //     return{
-    //         category_name: ""
-    //     }
-    // },
     props: {
         picture: String,
         category_name: String

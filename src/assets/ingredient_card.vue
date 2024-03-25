@@ -40,6 +40,7 @@ export default
     padding: 0.3%;
     border-radius: 5px;
     width: 100%;
+    box-shadow: 2.5px 2.5px 5px #7F5539;
 }
 a{
     width: 42%;
@@ -70,7 +71,9 @@ a:hover{
     }
 }
 @media (min-aspect-ratio: 0.7){
-    
+    a{
+        width: 30%;
+    }
 }
 @media (min-aspect-ratio: 1.7){
     .content{

@@ -6,10 +6,8 @@
 </template>
 
 <script>
-//import {categories as fetched_categories} from "../main.js"
 import meal_category from "./meal_category.vue"
 import {fetchCategories} from "@/services/api";
-//picture = categories.categories[0].strMealThumb
 export default {
     name: "all_meal_category",
     data() {

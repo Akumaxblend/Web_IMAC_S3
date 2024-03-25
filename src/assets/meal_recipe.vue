@@ -1,5 +1,6 @@
 <template>
     <div class="content">
+        <button v-on:click="go_top" id="top_button">TOP</button>
         <div class="recipe_header">
             <img class="meal_img" :src="meal.strMealThumb"/>
             <div class="header_texts">
@@ -9,7 +10,6 @@
                 </div>
             </div>
         </div>
-        
         <p class="instructions" v-for="i in instructions">{{i}}</p>
     </div>
 </template>
@@ -38,8 +38,8 @@ export default
                 this.ingredients = await fetchIngredientNumber(this.meal)
                 this.instructions = this.meal.strInstructions.split('\n')
             },
-            go_back(){
-                this.$emit("go_back", "recipe")
+            go_top(){
+                window.scroll({top:0, behavior:"smooth"})
             }
         },
         props: {
@@ -48,20 +48,22 @@ export default
             is_visible: true
         },
         components: {
-    ingredient_card, return_button
-}     
+            ingredient_card, return_button
+        }     
     }
 </script>
 
 <style scoped>
 .meal_img{
-    margin:2.5% 0% 0% 5%;
+    margin:2.5% auto;
     border-radius: 20px;
     width: 90%;
     height: 50%;
+    box-shadow: 5px 5px 5px #7F5539;
 }
 .recipe_header{
-    display:block;
+    display:flex;
+    flex-direction: column;
     width: 100%;
     margin-bottom: 2.5%;
 }
@@ -79,11 +81,9 @@ h2{
     color: #7F5539;
     margin: auto;
     border-radius: 5px;
-    font-size: 1.5rem;    
+    font-size: 3rem;    
 }
 p{
-    /* background-color: #EDE0D4; */
-    border-bottom: 2px solid #EDE0D4;
     font-size: 1rem;
     color: #7F5539;
     border-radius: 5px;
@@ -95,16 +95,28 @@ p{
 button{
     margin: auto;
 }
-
+#top_button{
+    position: fixed;
+    bottom:50%;
+    padding: 1rem;
+    color:#7F5539;
+    background-color: #EDE0D4;
+    border: 2px solid #7F5539;
+    border-radius: 5px;
+}
 @media (min-aspect-ratio: 0.7){
-    
+    .meal_img{
+        margin:2.5% auto;
+    }
 }
 @media (min-aspect-ratio: 1.7){
     .recipe_header{
         display: inline-flex;
+        flex-direction: row;
     }
     .meal_img{
         width: 50%;
+        margin: 2.5%;
     }
     .header_texts{
         width: 50%;
@@ -112,8 +124,6 @@ button{
     p{
         font-size: 2rem;
     }
-    h2{
-        font-size: 3rem;
-    }
 }
+
 </style>
