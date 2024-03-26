@@ -13,6 +13,9 @@ const router = createRouter({
     routes
 });
 
+if(!localStorage.getItem("search")) localStorage.setItem("search", "")
+if(!localStorage.getItem("ingredient1")) localStorage.setItem("ingredient1", "")
+if(!localStorage.getItem("ingredient2")) localStorage.setItem("ingredient2", "")
 createApp(App).use(router).mount('#app')
 createApp(Header).mount('#header')
 createApp(Footer).mount('#footer')

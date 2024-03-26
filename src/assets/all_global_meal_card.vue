@@ -51,16 +51,14 @@ export default
         },
         computed: {
             filtered_meals: function(){
-                const filter_search = (meal) => (JSON.stringify(meal).toLowerCase().includes(this.search.toLowerCase()+"") && JSON.stringify(meal).toLowerCase().includes(this.ingredient1.toLowerCase()+"") && JSON.stringify(meal).toLowerCase().includes(this.ingredient2.toLowerCase()+""))
+                const filter_search = (meal) => (JSON.stringify(meal).toLowerCase().includes(this.search.toLowerCase()) && JSON.stringify(meal).toLowerCase().includes(this.ingredient1.toLowerCase()) && JSON.stringify(meal).toLowerCase().includes(this.ingredient2.toLowerCase()))
                 const filter_country = (meal) => JSON.stringify(meal.strArea).toLowerCase().includes(this.country.toLowerCase())
-                console.log("STep 1")
                 if(this.meals.meals){
                     let toreturn = this.meals.meals.filter(filter_search)
                     toreturn = toreturn.filter(filter_country)
                     if(this.order_type == "AZmeals") toreturn.sort((a,b) => a.strMeal.charAt(0).localeCompare(b.strMeal.charAt(0)))
                     else if(this.order_type == "DifficultyUp") toreturn.sort((a,b) => a.strInstructions.length - b.strInstructions.length)
                     else toreturn.sort((a,b) => b.strInstructions.length - a.strInstructions.length)
-                    console.log("STep 2")
                     return toreturn
                 }
                 return []  
