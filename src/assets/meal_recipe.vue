@@ -17,7 +17,6 @@
 <script>
 import { fetchById, fetchIngredientNumber } from "@/services/api.js"
 import ingredient_card from "./ingredient_card.vue";
-import return_button from "@/return_button.vue";
 export default
     {
         name: "meal_recipe",
@@ -48,7 +47,7 @@ export default
             is_visible: true
         },
         components: {
-            ingredient_card, return_button
+            ingredient_card
         }     
     }
 </script>

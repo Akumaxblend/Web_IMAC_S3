@@ -12,7 +12,6 @@
 <script>
 import { RouterLink } from 'vue-router';
 
-//import { fetchRandom } from "@/services/api.js"
 export default
     {
     name: "global_meal_card",
